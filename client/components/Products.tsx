@@ -38,8 +38,8 @@ const Products: FC<ProductsProps> = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-          // const response = await fetch("http://localhost:3000/products");
-          const response = await authenticated_fetch("http://localhost:3000/products");
+          const response = await fetch("http://localhost:3000/products?limit=8");
+          // const response = await authenticated_fetch("http://localhost:3000/products?limit=8");
           const data = await response.json();
           setProducts(data.products);
         };

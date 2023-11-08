@@ -19,10 +19,10 @@ The frontend should be in React and all the data has to be served through an API
 
 Steps I will do this in:
 
-1. Create a rudimentary frontend and backend and connect them
-2. Make sure I can get all the products and display them
+1. Create a rudimentary frontend and backend and connect them (done)
+2. Make sure I can get all the products and display them (done)
 3. Add auth
-4. Create add and edit endpoints, and tie them into the frontend
+4. Create add(POST) and edit(Put/Patch) endpoints, and tie them into the frontend
 
 Use dummy api's from https://dummyjson.com/docs/products for all actions
 
