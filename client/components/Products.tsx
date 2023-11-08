@@ -1,5 +1,6 @@
 'use client'
 import { FC, useEffect, useState } from 'react';
+import Product from './Product';
 
 interface Product {
   id: number;
@@ -52,6 +53,8 @@ const Products: FC<ProductsProps> = () => {
           <p>{product.price}</p>
         </div>
       ))}
+    <Product></Product>
+
     </div>
   );
 };
