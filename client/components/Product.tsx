@@ -13,6 +13,24 @@ export default function Product({product}) {
     setShowModal(false);
   };
 
+  const onSave = (editedProduct) => {
+    fetch('/products', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(editedProduct)
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Success:', data);
+      setShowModal(false);
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+    });
+  };
+
   return (
     <>
       <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4">
@@ -34,7 +52,7 @@ export default function Product({product}) {
           <Button variant="outline" onClick={handleEditClick}>Edit</Button>
         </div>
       </div>
-      {showModal && (<Modal product = {product}/>)}
+      {showModal && (<Modal product={product} onCancel={handleModalClose} onSave={onSave} />)}
     </>
   )
 }
