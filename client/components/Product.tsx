@@ -1,14 +1,13 @@
 import { Button } from "./button"
 
 export default function Product({product}) {
-    console.log(product)
   return (
     <div className="border border-zinc-200 dark:border-zinc-800 rounded-lg p-4">
     <img
       alt="Product Image"
       className="w-full h-48 object-cover mb-4 rounded"
       height="200"
-      src="/placeholder.svg"
+      src={product?.thumbnail}
       style={{
         aspectRatio: "200/200",
         objectFit: "cover",
