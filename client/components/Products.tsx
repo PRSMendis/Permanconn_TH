@@ -1,6 +1,7 @@
 'use client'
 import { FC, useEffect, useState } from 'react';
 import Product from './Product';
+import { Button } from "./button"
 
 interface Product {
   id: number;
@@ -38,25 +39,42 @@ const Products: FC<ProductsProps> = () => {
         const fetchData = async () => {
           const response = await fetch("http://localhost:3000/products");
           const data = await response.json();
-          console.log(data.products);
+          console.log('data: ', data);
+          console.log('data.products: ', data.products);
           setProducts(data.products);
         };
         fetchData();
       }, []);
 
 
-  return (
-    <div>
-      {products.map((product) => (
-        <div key={product.id}>
-          <h2>{product.title}</h2>
-          <p>{product.price}</p>
-        </div>
-      ))}
-    <Product></Product>
+//   return (
+//     <div>
+//       {products.map((product) => (
+//         <div key={product.id}>
+//           <h2>{product.title}</h2>
+//           <p>{product.price}</p>
+//         </div>
+//       ))}
+//     <Product></Product>
 
+//     </div>
+//   );
+return (
+    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <div className="flex justify-between items-center mb-6">
+        <h1 className="text-2xl font-semibold">Products</h1>
+        <Button variant="secondary">Add New Product</Button>
+      </div>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {products.map((product) => {
+            console.log('product: ', product);
+            return <Product key={product.id} product={product} />
+        }
+            
+        )}
+      </div>
     </div>
-  );
+  )
 };
 
 export default Products;

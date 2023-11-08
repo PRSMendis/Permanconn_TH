@@ -45,7 +45,7 @@ const fetch = (...args) =>
 
 app.get('/products', async (req, res) => {
     try {
-        const response = await fetch('https://dummyjson.com/products');
+        const response = await fetch('https://dummyjson.com/products/?limit=3');
         const products = await response.json();
         console.log(products);
         res.send(products);
