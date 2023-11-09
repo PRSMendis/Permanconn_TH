@@ -25,7 +25,7 @@ Bonus:
 2. Tests included in the API backend code
 3. Search from the list of products
 
-Rayhan's edits:
+# Rayhan's edits:
 
 Here's my submission:
 
