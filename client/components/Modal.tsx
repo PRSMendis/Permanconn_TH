@@ -21,19 +21,20 @@ interface ModalProps {
 }
 
 const Modal: React.FC<ModalProps> = ({ product, onSave, onCancel }) => {
-  const [title, setTitle] = useState(product.title);
-  const [description, setDescription] = useState(product.description);
-  const [price, setPrice] = useState(product.price);
-  const [discountPercentage, setDiscountPercentage] = useState(product.discountPercentage);
-  const [rating, setRating] = useState(product.rating);
-  const [stock, setStock] = useState(product.stock);
-  const [brand, setBrand] = useState(product.brand);
-  const [category, setCategory] = useState(product.category);
+const [title, setTitle] = useState(product?.title || '');
+const [description, setDescription] = useState(product?.description || '');
+const [price, setPrice] = useState(product?.price || 0);
+const [discountPercentage, setDiscountPercentage] = useState(product?.discountPercentage || 0);
+const [rating, setRating] = useState(product?.rating || 0);
+const [stock, setStock] = useState(product?.stock || 0);
+const [brand, setBrand] = useState(product?.brand || '');
+const [category, setCategory] = useState(product?.category || '');
 
 const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const id = product?.id ? product.id : 101;
     const updatedProduct = {
-        id: product.id,
+        id,
         title,
         description,
         price,

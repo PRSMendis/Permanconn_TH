@@ -14,3 +14,14 @@ export function authenticated_fetch(input: RequestInfo, init?: RequestInit) {
     },
   })
 }
+
+export const dummyProduct = {
+  id: 0,
+  title: "",
+  name: "",
+  description: "",
+  price: 0,
+  image: "",
+  category: "",
+  quantity: 0,
+}

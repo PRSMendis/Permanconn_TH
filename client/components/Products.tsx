@@ -3,6 +3,9 @@ import { FC, useEffect, useState } from 'react';
 import Product from './Product';
 import { Button } from "./button"
 import authenticated_fetch from '../lib/utils'
+import Modal from './Modal';
+import { dummyProduct } from '../lib/utils';
+
 
 interface Product {
   id: number;
@@ -48,19 +51,46 @@ const Products: FC<ProductsProps> = () => {
         fetchData();
       }, []);
 
-      const handleClick = async () => {
+      const [showModal, setShowModal] = useState(false);
+
+          const handleClick = () => {
+            setShowModal(true);
+          };
+
+          const handleCloseModal = () => {
+            setShowModal(false);
+          };
+
+      // const createNewProduct = async (body) => {
+      //   const res = await fetch('http://localhost:3000/products', {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     },
+      //     body: JSON.stringify({
+      //       title: 'New Product',
+      //       price: 100
+      //     })
+      //   });
+      //   const data = await res.json();
+      //   console.log(data);
+      // };
+
+      const createNewProduct = async (editedProduct) => {
         const res = await fetch('http://localhost:3000/products', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({
-            title: 'New Product',
-            price: 100
-          })
+          body: JSON.stringify(editedProduct)
+        })
+        .then(response => response.json())
+        .then(data => {
+          setShowModal(false);
+        })
+        .catch((error) => {
+          
         });
-        const data = await res.json();
-        console.log(data);
       };
 
     
@@ -70,6 +100,7 @@ return (
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold">Products</h1>
         <Button onClick={handleClick} variant="secondary">Add New Product</Button>
+        {showModal && <Modal products={dummyProduct} onSave={createNewProduct} onClose={handleCloseModal} />}
       </div>
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {products.map((product) => {
