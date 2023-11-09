@@ -48,7 +48,7 @@ What is missing:
 Working authorisation.
 
 I assumed the solution required building your authentication system, rather than using something like clerk or auth0 which I am more familiar with recently.
-I have implemented JWT based authentication in the past, and attempted to do so again but ran into a few bugs that I didn't have time to squash. As I am quite busy over the next few days I am submitting a partially complete solution, ideally if I am able to find some time today or tomorrow I will work on this some more to get the solution I wanted.
+I have implemented JWT based authentication in the past, and attempted to do so again but ran into a few bugs that I didn't have time to squash. As I am quite busy over the next few days I am submitting a partially complete solution, ideally if I am able to find some time today or tomorrow I will work on this some more to get the solution I wanted. I didn't get as long to work on it as I would have liked, I was sick monday - wednesday so also needed to sleep to make sure I could recover and get through this take home without too much brain fog.
 
 Thanks for this task! Was pretty enjoyable - Hope to discuss with you further.
 
