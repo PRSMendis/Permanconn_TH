@@ -8,6 +8,17 @@ Content-Type: application/json
 }
 ###
 
+PUT http://localhost:3000/products/1
+Content-Type: application/json
+
+{
+    "title": "Updated Product",
+    "price": 19.99,
+    "description": "This is an updated product"
+}
+
+###
+
 PUT https://dummyjson.com/products/1
 Content-Type: application/json
 

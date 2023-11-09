@@ -152,15 +152,22 @@ app.post('/products', async (req, res) => {
 });
 
 app.put('/products/:id', async (req, res) => {
+    console.log('test12');
+    console.log('req.params.id: ', req.params.id);
+    console.log('req.body: ', req.body);
+
+    const { id, ...content } = req.body;
+
     try {
         const response = await fetch(`https://dummyjson.com/products/${req.params.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(req.body)
+            body: JSON.stringify(content)
         });
         const updatedProduct = await response.json();
+        console.log('updatedProduct: ', updatedProduct);
         res.send(updatedProduct);
     } catch (error) {
         console.error(error);

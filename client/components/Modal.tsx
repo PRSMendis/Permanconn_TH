@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import {Button} from './Button';
 
 interface Product {
   id: number;
@@ -29,20 +30,21 @@ const Modal: React.FC<ModalProps> = ({ product, onSave, onCancel }) => {
   const [brand, setBrand] = useState(product.brand);
   const [category, setCategory] = useState(product.category);
 
-  const handleSave = () => {
+const handleSave = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     const updatedProduct = {
-      id: product.id,
-      title,
-      description,
-      price,
-      discountPercentage,
-      rating,
-      stock,
-      brand,
-      category,
+        id: product.id,
+        title,
+        description,
+        price,
+        discountPercentage,
+        rating,
+        stock,
+        brand,
+        category,
     };
     onSave(updatedProduct);
-  };
+};
 
   return (
     <div>
@@ -88,8 +90,8 @@ const Modal: React.FC<ModalProps> = ({ product, onSave, onCancel }) => {
           <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} />
         </label>
         <br />
-        <button type="button" onClick={handleSave}>Save</button>
-        <button type="button" onClick={onCancel}>Cancel</button>
+        <Button variant="outline" onClick={(e) => handleSave(e)}>Save</Button>
+        <Button variant="outline" onClick={onCancel}>Cancel</Button>
       </form>
     </div>
   );

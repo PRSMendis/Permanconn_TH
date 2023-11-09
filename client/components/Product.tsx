@@ -14,7 +14,10 @@ export default function Product({product}) {
   };
 
   const onSave = (editedProduct) => {
-    fetch('/products', {
+    
+    
+    
+    fetch(`http://localhost:3000/products/${editedProduct.id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
@@ -23,11 +26,10 @@ export default function Product({product}) {
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Success:', data);
       setShowModal(false);
     })
     .catch((error) => {
-      console.error('Error:', error);
+      
     });
   };
 
