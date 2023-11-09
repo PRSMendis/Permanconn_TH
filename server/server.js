@@ -5,25 +5,6 @@ const cors = require('cors');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
-// function authenticateToken(req, res, next) {
-//   const authHeader = req.headers['authorization'];
-//   console.log('authHeader: ', authHeader);
-//   const token = authHeader && authHeader.split(' ')[1];
-//   console.log('token: ', token);
-
-//   if (token == null) return res.sendStatus(401);
-
-//   console.log('process.env.ACCESS_TOKEN_SECRET: ', process.env.ACCESS_TOKEN_SECRET);
-// //   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
-//     jwt.verify('test', 'test', (err, user) => {
-//     if (err) return res.sendStatus(403);
-//     req.user = user;
-//     next();
-//   });
-// }
-
-// Define routes here
-
 app.use(cors());
 app.use(express.json());
 // shouldn't apply middleware to every layer atm
@@ -45,38 +26,9 @@ app.get('/auth', (req, res) => {
     res.send({ accessToken: accessToken });
 });
 
-const products = [
-    {
-        id: 1,
-        name: 'Product 1',
-        description: 'This is the first product',
-        price: 10.99
-    },
-    {
-        id: 2,
-        name: 'Product 2',
-        description: 'This is the second product',
-        price: 19.99
-    },
-    {
-        id: 3,
-        name: 'Product 3',
-        description: 'This is the third product',
-        price: 5.99
-    }
-];
-
 // Dynamically import node-fetch
 const fetch = (...args) =>
 	import('node-fetch').then(({default: fetch}) => fetch(...args));
-
-// app.post('/login', (req, res) => {
-//     //Authenticate Uesrs
-//     const username = req.body.username
-//     const user = { name: username}
-//     const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET)
-//     res.json({ accessToken: accessToken })
-// })
 
 app.post('/login', (req, res) => {
     // Authenticate User
@@ -91,17 +43,6 @@ app.post('/login', (req, res) => {
 function generateAccessToken(user) {
 return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
     }
-
-const posts = [
-    {
-      username: 'Rayhan',
-      title: 'Post 1'
-    },
-    {
-      username: 'Jim',
-      title: 'Post 2'
-    }
-  ]
 
   function authenticateToken(req, res, next) {
     const authHeader = req.headers['authorization']
@@ -152,10 +93,6 @@ app.post('/products', async (req, res) => {
 });
 
 app.put('/products/:id', async (req, res) => {
-    console.log('test12');
-    console.log('req.params.id: ', req.params.id);
-    console.log('req.body: ', req.body);
-
     const { id, ...content } = req.body;
 
     try {
@@ -167,7 +104,6 @@ app.put('/products/:id', async (req, res) => {
             body: JSON.stringify(content)
         });
         const updatedProduct = await response.json();
-        console.log('updatedProduct: ', updatedProduct);
         res.send(updatedProduct);
     } catch (error) {
         console.error(error);

@@ -14,9 +14,6 @@ export default function Product({product}) {
   };
 
   const onSave = (editedProduct) => {
-    
-    
-    
     fetch(`http://localhost:3000/products/${editedProduct.id}`, {
       method: 'PUT',
       headers: {
