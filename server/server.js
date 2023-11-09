@@ -7,8 +7,6 @@ require('dotenv').config();
 
 app.use(cors());
 app.use(express.json());
-// shouldn't apply middleware to every layer atm
-// app.use(authenticateToken);
 
 const PORT = process.env.PORT || 3000;
 
