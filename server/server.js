@@ -63,7 +63,7 @@ return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15s' })
 
 app.get('/products', async (req, res) => {
     try {
-        const limit = req.query.limit || 3;
+        const limit = req.query.limit || process.env.PRODUCTS_LIMIT || 5;
         const response = await fetch(`https://dummyjson.com/products/?limit=${limit}`);
         const products = await response.json();
         res.send(products);
